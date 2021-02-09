@@ -1,2 +1,2 @@
-# heftx-platform
-The core component of heftx engine
+# graphmk
+module to create graph schema from relational data
