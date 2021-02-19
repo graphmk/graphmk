@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
 }
 
-group 'org.graphmk'
+group 'io.github.graphmk'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -10,7 +10,7 @@ repositories {
 }
 jar {
     manifest {
-        attributes "Main-Class": "com.graphmk.graphcore.PyGenerateGraph"
+        attributes "Main-Class": "io.github.graphmk.graphcore.PyGenerateGraph"
     }
 
     from {
