@@ -1,9 +1,11 @@
 plugins {
     id 'java-library'
+    id 'maven'
+    id 'signing'
 }
 
 group 'io.github.graphmk'
-version '1.0-SNAPSHOT'
+version '1.0.0'
 
 repositories {
     mavenCentral()
@@ -16,6 +18,21 @@ jar {
     from {
         configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
+}
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+artifacts {
+    archives javadocJar, sourcesJar
+}
+signing {
+    sign configurations.archives
 }
 dependencies {
     implementation 'org.testng:testng:7.1.0'
@@ -51,3 +68,59 @@ test {
     useJUnitPlatform()
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: 'keshann', password: 'Ke$henJey123')
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: 'keshann', password: 'Ke$henJey123')
+            }
+
+            pom.project {
+                name 'graphmk'
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description 'A general purpose library that helps to create graph models out of relational data'
+                url 'https://github.com/graphmk/graphmk'
+
+                scm {
+                    connection 'scm:git:https://github.com/graphmk/graphmk.git'
+                    developerConnection 'scm:git:git@github.com:graphmk/graphmk.git'
+                    url 'https://github.com/graphmk/graphmk'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'keshann'
+                        name 'Keshan'
+                        email 'keshann.18@cse.mrt.ac.lk'
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
