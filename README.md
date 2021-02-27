@@ -30,7 +30,7 @@ The easiest way to get started with running graphmk locally and setting up a
 development environment is add the maven library
 from [maven repository](https://mvnrepository.com/artifact/io.github.graphmk/graphmk/1.0.0).
  
-Then follow [docs](https://graphmk-docs.readthedocs.io/en/latest/) examples to try it out.
+Then follow [docs](https://graphmk.readthedocs.io/en/latest/) examples to try it out.
 
 ## Contact
 
@@ -38,7 +38,7 @@ For additional information about GraphMk, please contact keshann.18@cse.mrt.ac.l
 
 ## Links
 
-- [Documentation](https://graphmk-docs.readthedocs.io/en/latest/)
+- [Documentation](https://graphmk.readthedocs.io/en/latest/)
 
 ## Changelog
 
