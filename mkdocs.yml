@@ -1,0 +1,19 @@
+site_name: GraphMk 0.1
+site_url: https://github.com/graphmk/graphmk
+site_description: GraphMk Documentation
+
+repo_url: https://github.com/graphmk/graphmk
+
+docs_dir: docs
+
+pages:
+- Home: 'index.md'
+- FAQ: 'faq.md'
+- Contact Us: 'contact-us.md'
+
+theme: readthedocs
+
+markdown_extensions:
+  - toc:
+     permalink: 
+  - admonition
